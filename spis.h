@@ -146,7 +146,8 @@ class node{
   void arrowUpdate(unsigned int);
   void inputChar(int line, int index, char ch);
   void newLine(int line, int index);
-  int  backspace(int line, int index);
+  int backspace(int line, int index);
+  int del(int line, int index);
   std::list<std::pair<std::string, uint8_t> > labels;
   int getLine(string label);
   arrowType *arrows[4];

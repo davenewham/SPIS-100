@@ -281,12 +281,28 @@ int node::backspace(int line, int index) {
     }
     return 1;
   } else if(line > 0 && inputCode[line - 1].length() + inputCode[line].length() <= MAX_LINE_LENGTH && index == 0) {
-    inputCode[line - 1] += inputCode[line];
-    inputCode.erase(inputCode.begin() + line);
-    return 2;
+      inputCode[line - 1] += inputCode[line];
+      inputCode.erase(inputCode.begin() + line);
+      return 2;
   }
-  
   return 0;
+}
+
+int node::del(int line, int index) {
+
+    if (index > 0) {
+        if (inputCode[line].length() > index) {
+            inputCode[line] = inputCode[line].substr(0, index ) + inputCode[line].substr(index + 1);
+        } else if (inputCode[line].length() == index) {
+            inputCode[line] = inputCode[line].substr(0, index + 1);
+        }
+        return 1;
+    } else if(line > 0 && inputCode[line - 1].length() + inputCode[line].length() <= MAX_LINE_LENGTH && index == 0) {
+        inputCode[line - 1] += inputCode[line];
+        inputCode.erase(inputCode.begin() + line);
+        return 2;
+    }
+    return 0;
 }
 
 pair<int8_t, int16_t> node::getFromSrc(string src) {
