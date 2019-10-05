@@ -212,17 +212,25 @@ bool systemInput(int input, MEVENT event) {
 			setCursor(true);
 		}
 	} else if (input == KEY_DC || input == 127){
-        int tmpLength = grid[selectedNode].inputCode[selectedLine].length();
+//int tmpLength = grid[selectedNode].inputCode[selectedLine].length();
+
         int status = grid[selectedNode].deleteKey(selectedLine, selectedIndex);
 
-//selectedIndex++;
-//      x++;
-
+        switch(status) {
+            case 1:
+                break;
+            case 2:
+                selectedLine++;
+                selectedIndex = 0;
+                x = getbegx(grid[selectedNode].w_code) + selectedIndex;
+                y++;
+                break;
+        }
         drawCode(selectedNode);
         move(y, x);
         setCursor(true);
 
-	} else if (input == KEY_BACKSPACE){
+	} else if (input == KEY_BACKSPACE || input == 8){
 		// BACKSPACE
 		int tmpLength = grid[selectedNode].inputCode[selectedLine].length();
 		int status = grid[selectedNode].backspace(selectedLine, selectedIndex);
