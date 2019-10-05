@@ -150,6 +150,8 @@ class node{
   std::list<std::pair<std::string, uint8_t> > labels;
   int getLine(string label);
   arrowType *arrows[4];
+
+    int deleteKey(int line, int index);
 };
 
 class runtimeInput {
